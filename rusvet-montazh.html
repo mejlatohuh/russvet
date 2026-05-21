@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РусСвет — Электромонтажные работы в Краснодарском крае</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#C9A84C;
+    --gold-light:#E8C96A;
+    --gold-dark:#9A7A2E;
+    --black:#080808;
+    --black-soft:#111111;
+    --black-card:#161616;
+    --white:#FFFFFF;
+    --white-soft:#F5F3EE;
+    --gray:#888;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'Raleway',sans-serif;overflow-x:hidden}
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:var(--black)}
+  ::-webkit-scrollbar-thumb{background:var(--gold)}
+
+  /* HEADER */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.2rem 4rem;
+    background:rgba(8,8,8,0.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(201,168,76,0.15);
+  }
+  .logo{display:flex;align-items:center;gap:1rem;text-decoration:none}
+  .logo-icon{
+    width:44px;height:44px;
+    border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .logo-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
+  .logo-text{display:flex;flex-direction:column}
+  .logo-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--gold);letter-spacing:0.08em;line-height:1}
+  .logo-sub{font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-top:3px}
+
+  nav{display:flex;gap:2.5rem;align-items:center}
+  nav a{
+    color:rgba(255,255,255,0.7);text-decoration:none;
+    font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+    transition:color 0.3s;
+  }
+  nav a:hover{color:var(--gold)}
+  .btn-call{
+    background:transparent;border:1px solid var(--gold);
+    color:var(--gold);padding:0.6rem 1.6rem;font-family:'Raleway',sans-serif;
+    font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+    cursor:pointer;transition:all 0.3s;font-weight:600;text-decoration:none;
+    display:inline-block;
+  }
+  .btn-call:hover{background:var(--gold);color:var(--black)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;overflow:hidden;
+    padding:6rem 4rem 4rem;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+               radial-gradient(ellipse 40% 40% at 15% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+  .hero-lines{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .hero-lines::before{
+    content:'';position:absolute;
+    top:0;left:50%;width:1px;height:100%;
+    background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.2),transparent);
+  }
+  .hero-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size:60px 60px;
+  }
+  .hero-content{position:relative;z-index:2;max-width:650px}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:0.6rem;
+    border:1px solid rgba(201,168,76,0.3);
+    padding:0.4rem 1rem;margin-bottom:2rem;
+    font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;
+  }
+  .hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:4.5rem;font-weight:600;line-height:1.05;
+    letter-spacing:-0.02em;margin-bottom:1.5rem;
+  }
+  h1 span{color:var(--gold)}
+  .hero-desc{
+    color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.8;
+    max-width:460px;margin-bottom:2.5rem;font-weight:300;
+  }
+  .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--gold);color:var(--black);
+    padding:1rem 2.5rem;font-family:'Raleway',sans-serif;
+    font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;
+    cursor:pointer;border:none;font-weight:700;transition:all 0.3s;text-decoration:none;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+  .btn-outline{
+    background:transparent;border:1px solid rgba(255,255,255,0.25);
+    color:rgba(255,255,255,0.7);padding:1rem 2.5rem;font-family:'Raleway',sans-serif;
+    font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;
+    cursor:pointer;font-weight:500;transition:all 0.3s;text-decoration:none;display:inline-block;
+  }
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+  .hero-stats{
+    position:absolute;right:4rem;top:50%;transform:translateY(-50%);
+    display:flex;flex-direction:column;gap:2.5rem;z-index:2;
+  }
+  .stat{text-align:right}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--gold);line-height:1}
+  .stat-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:4px}
+
+  /* SECTION COMMON */
+  section{padding:6rem 4rem}
+  .section-tag{
+    display:inline-flex;align-items:center;gap:0.8rem;
+    font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:1.2rem;
+  }
+  .section-tag::before{content:'';width:30px;height:1px;background:var(--gold)}
+  h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;font-weight:600;line-height:1.1;
+    margin-bottom:1rem;
+  }
+  .section-desc{color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.8;max-width:500px;font-weight:300}
+
+  /* SERVICES */
+  .services{background:var(--black-soft)}
+  .services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(201,168,76,0.1);
+  }
+  .service-card{
+    background:var(--black-card);padding:2.5rem;
+    transition:all 0.4s;cursor:default;
+    position:relative;overflow:hidden;
+  }
+  .service-card::before{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    transform:scaleX(0);transition:transform 0.4s;
+  }
+  .service-card:hover{background:#1a1a1a}
+  .service-card:hover::before{transform:scaleX(1)}
+  .service-icon{
+    width:52px;height:52px;margin-bottom:1.5rem;
+    border:1px solid rgba(201,168,76,0.2);
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color 0.3s;
+  }
+  .service-card:hover .service-icon{border-color:var(--gold)}
+  .service-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
+  .service-num{
+    position:absolute;top:1.5rem;right:1.5rem;
+    font-family:'Cormorant Garamond',serif;font-size:3.5rem;
+    font-weight:700;color:rgba(201,168,76,0.05);line-height:1;
+  }
+  .service-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:0.8rem;color:var(--white)}
+  .service-desc{color:rgba(255,255,255,0.45);font-size:0.85rem;line-height:1.7;font-weight:300}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+  .about-visual{position:relative}
+  .about-frame{
+    border:1px solid rgba(201,168,76,0.2);
+    aspect-ratio:4/5;
+    position:relative;
+    background:var(--black-card);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .about-frame-inner{
+    position:absolute;inset:1.5rem;
+    border:1px solid rgba(201,168,76,0.1);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .about-frame-icon{opacity:0.15}
+  .about-frame-icon svg{width:120px;height:120px;stroke:var(--gold);fill:none;stroke-width:0.8}
+  .about-corner{
+    position:absolute;width:20px;height:20px;
+  }
+  .about-corner.tl{top:-1px;left:-1px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+  .about-corner.tr{top:-1px;right:-1px;border-top:2px solid var(--gold);border-right:2px solid var(--gold)}
+  .about-corner.bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold)}
+  .about-corner.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+  .about-badge-float{
+    position:absolute;right:-2rem;bottom:3rem;
+    background:var(--gold);color:var(--black);
+    padding:1.5rem;text-align:center;
+  }
+  .about-badge-float .num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;line-height:1;display:block}
+  .about-badge-float .lbl{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;display:block;margin-top:4px}
+  .features{display:flex;flex-direction:column;gap:1.5rem;margin-top:2.5rem}
+  .feature{display:flex;gap:1rem;align-items:flex-start}
+  .feature-dot{
+    width:6px;height:6px;background:var(--gold);border-radius:50%;
+    flex-shrink:0;margin-top:8px;
+  }
+  .feature-text{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.7;font-weight:300}
+  .feature-text strong{color:var(--white);font-weight:600}
+
+  /* WHY */
+  .why{background:var(--black-soft)}
+  .why-inner{max-width:900px;margin:0 auto;text-align:center}
+  .why-inner h2{font-size:2.8rem;margin-bottom:0.8rem}
+  .why-inner .section-desc{margin:0 auto 4rem;max-width:560px}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:left}
+  .why-card{
+    border:1px solid rgba(201,168,76,0.12);
+    padding:2rem 1.5rem;background:var(--black-card);
+    transition:border-color 0.3s;
+  }
+  .why-card:hover{border-color:rgba(201,168,76,0.4)}
+  .why-card-icon{margin-bottom:1.2rem}
+  .why-card-icon svg{width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.5}
+  .why-card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:0.6rem}
+  .why-card-desc{color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.7;font-weight:300}
+
+  /* GEOGRAPHY */
+  .geo{padding:5rem 4rem;border-top:1px solid rgba(201,168,76,0.1)}
+  .geo-inner{display:flex;align-items:center;justify-content:space-between;gap:4rem;flex-wrap:wrap}
+  .geo-text .section-tag{margin-bottom:0.8rem}
+  .geo-text h2{font-size:2.5rem;margin-bottom:0.5rem}
+  .geo-text p{color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.8;font-weight:300;max-width:400px;margin-top:1rem}
+  .cities{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem}
+  .city-tag{
+    border:1px solid rgba(201,168,76,0.2);
+    padding:0.4rem 1rem;
+    font-size:0.75rem;letter-spacing:0.1em;color:rgba(255,255,255,0.6);
+    font-weight:400;transition:all 0.3s;
+  }
+  .city-tag:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* CONTACT */
+  .contact{background:var(--black-card)}
+  .contact-inner{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:6rem;align-items:start;
+  }
+  .contact-info h2{font-size:2.8rem;margin-bottom:1rem}
+  .contact-info p{color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.8;font-weight:300;margin-bottom:2.5rem}
+  .contact-details{display:flex;flex-direction:column;gap:1.5rem}
+  .contact-item{display:flex;gap:1rem;align-items:flex-start}
+  .contact-item-icon{
+    width:40px;height:40px;border:1px solid rgba(201,168,76,0.2);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .contact-item-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5}
+  .contact-item-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:3px}
+  .contact-item-val{font-size:0.95rem;color:var(--white);font-weight:500}
+  .contact-form{display:flex;flex-direction:column;gap:1rem}
+  .form-group{display:flex;flex-direction:column;gap:0.4rem}
+  .form-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray)}
+  .form-input{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(201,168,76,0.15);
+    color:var(--white);padding:0.9rem 1rem;
+    font-family:'Raleway',sans-serif;font-size:0.9rem;
+    outline:none;transition:border-color 0.3s;width:100%;
+  }
+  .form-input:focus{border-color:rgba(201,168,76,0.5)}
+  .form-input::placeholder{color:rgba(255,255,255,0.2)}
+  textarea.form-input{resize:vertical;min-height:110px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form-submit{
+    background:var(--gold);color:var(--black);border:none;
+    padding:1rem 2.5rem;font-family:'Raleway',sans-serif;
+    font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;
+    font-weight:700;cursor:pointer;transition:all 0.3s;
+    margin-top:0.5rem;align-self:flex-start;
+  }
+  .form-submit:hover{background:var(--gold-light)}
+  .form-note{font-size:0.7rem;color:rgba(255,255,255,0.25);margin-top:0.5rem;line-height:1.6}
+
+  /* FOOTER */
+  footer{
+    border-top:1px solid rgba(201,168,76,0.1);
+    padding:2.5rem 4rem;
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:1.5rem;
+  }
+  .footer-logo .logo-name{font-size:1.1rem}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.05em}
+  .footer-links{display:flex;gap:2rem}
+  .footer-links a{font-size:0.72rem;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s}
+  .footer-links a:hover{color:var(--gold)}
+
+  /* DIVIDER */
+  .gold-line{width:60px;height:2px;background:var(--gold);margin:1.5rem 0}
+
+  /* TICKER */
+  .ticker{
+    background:var(--gold);padding:0.7rem 0;overflow:hidden;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .ticker-inner{display:flex;gap:3rem;animation:ticker 25s linear infinite;white-space:nowrap}
+  .ticker-item{
+    font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--black);font-weight:700;display:flex;align-items:center;gap:1.5rem;flex-shrink:0;
+  }
+  .ticker-item::after{content:'✦';color:rgba(0,0,0,0.4)}
+  @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* FADE IN */
+  .fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:900px){
+    header{padding:1rem 1.5rem}
+    nav{display:none}
+    .hero{padding:6rem 1.5rem 3rem}
+    h1{font-size:3rem}
+    .hero-stats{display:none}
+    section{padding:4rem 1.5rem}
+    .services-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr}
+    .about-visual{display:none}
+    .why-grid{grid-template-columns:1fr 1fr}
+    .contact-inner{grid-template-columns:1fr}
+    footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem}
+    .geo{padding:3rem 1.5rem}
+    .form-row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M13 2L4.5 13H11L10 22L19.5 11H13L13 2Z"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">РусСвет</span>
+      <span class="logo-sub">Руслан Георгичук · Электрик</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#about">О компании</a>
+    <a href="#geo">География</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+  <a href="tel:+78612000000" class="btn-call">+7 (861) 200-00-00</a>
+</header>
+
+<!-- TICKER -->
+<div class="ticker" style="margin-top:74px">
+  <div class="ticker-inner">
+    <span class="ticker-item">Электромонтаж под ключ</span>
+    <span class="ticker-item">Краснодарский край</span>
+    <span class="ticker-item">Работаю один — отвечаю лично</span>
+    <span class="ticker-item">Жилые и коммерческие объекты</span>
+    <span class="ticker-item">Гарантия на все работы</span>
+    <span class="ticker-item">Выезд в день обращения</span>
+    <span class="ticker-item">Электромонтаж под ключ</span>
+    <span class="ticker-item">Краснодарский край</span>
+    <span class="ticker-item">Работаю один — отвечаю лично</span>
+    <span class="ticker-item">Жилые и коммерческие объекты</span>
+    <span class="ticker-item">Гарантия на все работы</span>
+    <span class="ticker-item">Выезд в день обращения</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-badge">Краснодарский край · Руслан Георгичук</div>
+    <h1>Электрик,<br>которому можно<br><span>доверять</span></h1>
+    <p class="hero-desc">
+      Меня зовут Руслан. Я профессиональный электрик с многолетним опытом работы в Краснодарском крае. Работаю один — а значит, вы всегда знаете, кто несёт ответственность за результат.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Получить расчёт</a>
+      <a href="#services" class="btn-outline">Наши услуги</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Объектов сдано</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Лет опыта</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Личная гарантия</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header fade-in">
+    <div>
+      <div class="section-tag">Что я делаю</div>
+      <h2>Полный спектр<br>электромонтажных работ</h2>
+    </div>
+    <p class="section-desc">От небольшого ремонта в квартире до монтажа под ключ — берусь за любую задачу.</p>
+  </div>
+  <div class="services-grid fade-in">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="service-title">Электрика в квартирах и домах</div>
+      <p class="service-desc">Монтаж электропроводки, щитов, розеток и выключателей. Замена старой проводки. Подключение бытовой техники.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V8l8-6 8 6v12"/><path d="M9 20v-5h6v5"/></svg>
+      </div>
+      <div class="service-title">Коттеджи и загородные дома</div>
+      <p class="service-desc">Комплексный монтаж под ключ. Наружное и внутреннее освещение, ввод, заземление, система «умного дома».</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="service-title">Коммерческие объекты</div>
+      <p class="service-desc">Офисы, торговые площади, рестораны, склады. Проект, монтаж, сдача в эксплуатацию с получением всех разрешений.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      </div>
+      <div class="service-title">Промышленный электромонтаж</div>
+      <p class="service-desc">Силовые линии, трансформаторные подстанции, системы автоматизации производства. Работа с объектами любой мощности.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
+      <div class="service-title">Освещение и светотехника</div>
+      <p class="service-desc">Проектирование и монтаж внутреннего и наружного освещения. Архитектурная подсветка, LED-системы, уличные фонари.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="service-title">Заземление и молниезащита</div>
+      <p class="service-desc">Монтаж систем заземления и уравнивания потенциалов. Молниеотводы для жилых и промышленных объектов по ГОСТ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual fade-in">
+      <div class="about-frame">
+        <div class="about-corner tl"></div>
+        <div class="about-corner tr"></div>
+        <div class="about-corner bl"></div>
+        <div class="about-corner br"></div>
+        <div class="about-frame-inner">
+          <div class="about-frame-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L4.5 13H11L10 22L19.5 11H13L13 2Z"/></svg>
+          </div>
+        </div>
+        <div class="about-badge-float">
+          <span class="num">12</span>
+          <span class="lbl">лет опыта</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-content fade-in">
+      <div class="section-tag">О себе</div>
+      <h2>Привет, я Руслан<br>Георгичук</h2>
+      <div class="gold-line"></div>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.85;font-weight:300;margin-bottom:1.5rem">
+        Я занимаюсь электромонтажом в Краснодарском крае уже более 8 лет. За это время выполнил более 200 объектов — квартиры, дома, магазины, кафе и небольшие производственные помещения.
+      </p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.85;font-weight:300;margin-bottom:2rem">
+        Работаю без посредников и бригад. Это значит, что вы общаетесь напрямую со мной, я сам принимаю вызов и сам выполняю работу. Никаких сюрпризов и «испорченного телефона».
+      </p>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-dot"></div>
+          <p class="feature-text"><strong>Допуск по электробезопасности</strong> — работаю официально, с соблюдением всех норм ПУЭ и ГОСТ</p>
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>
+          <p class="feature-text"><strong>Договор и акты выполненных работ</strong> — всё официально, без «серых» схем</p>
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>
+          <p class="feature-text"><strong>Личная гарантия</strong> на все выполненные работы — мой номер у вас всегда есть</p>
+        </div>
+        <div class="feature">
+          <div class="feature-dot"></div>
+          <p class="feature-text"><strong>Только сертифицированные материалы</strong> — закупаю у проверенных поставщиков, без дешёвых аналогов</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="fade-in" style="display:flex;flex-direction:column;align-items:center">
+      <div class="section-tag">Почему я</div>
+      <h2>Преимущества работы<br>с частным мастером</h2>
+      <p class="section-desc">Без лишних звеньев — вы всегда знаете, с кем имеете дело.</p>
+    </div>
+    <div class="why-grid fade-in">
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="why-card-title">Прямой контакт</div>
+        <p class="why-card-desc">Вы пишете или звоните мне — Руслану. Без менеджеров, диспетчеров и «уточню у мастера»</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="why-card-title">Точно в срок</div>
+        <p class="why-card-desc">Фиксирую сроки и держу слово. Никаких «бригада заболела» или «задержались на другом объекте»</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="why-card-title">Честная цена</div>
+        <p class="why-card-desc">Без «накрутки» за бренд. Считаю смету прозрачно — за что плачёте, то и получаете</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="why-card-title">Всегда на связи</div>
+        <p class="why-card-desc">После сдачи объекта мой номер остаётся у вас. Отвечу на вопрос или приеду при необходимости</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section class="geo" id="geo">
+  <div class="geo-inner">
+    <div class="geo-text fade-in">
+      <div class="section-tag">Регион работы</div>
+      <h2>Работаем по всему<br>Краснодарскому краю</h2>
+      <p>Выезжаем на объекты в любую точку Краснодарского края. Бесплатный выезд на замер в радиусе 50 км от Краснодара.</p>
+      <div class="cities">
+        <span class="city-tag">Краснодар</span>
+        <span class="city-tag">Сочи</span>
+        <span class="city-tag">Новороссийск</span>
+        <span class="city-tag">Анапа</span>
+        <span class="city-tag">Армавир</span>
+        <span class="city-tag">Геленджик</span>
+        <span class="city-tag">Тихорецк</span>
+        <span class="city-tag">Ейск</span>
+        <span class="city-tag">Туапсе</span>
+        <span class="city-tag">Кропоткин</span>
+        <span class="city-tag">Лабинск</span>
+        <span class="city-tag">и другие</span>
+      </div>
+    </div>
+    <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,0.1);flex-shrink:0">
+      <div style="background:var(--black-card);padding:2rem;text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--gold)">200+</div>
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-top:6px">объектов</div>
+      </div>
+      <div style="background:var(--black-card);padding:2rem;text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--gold)">30+</div>
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-top:6px">городов</div>
+      </div>
+      <div style="background:var(--black-card);padding:2rem;text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--gold)">8+</div>
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-top:6px">лет опыта</div>
+      </div>
+      <div style="background:var(--black-card);padding:2rem;text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--gold)">98%</div>
+        <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-top:6px">рекомендуют</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <div class="section-tag">Связаться со мной</div>
+      <h2 class="contact-info">Получите бесплатный<br>расчёт стоимости</h2>
+      <p class="contact-info" style="color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.8;font-weight:300;margin-top:1rem;margin-bottom:2.5rem">Оставьте заявку — я перезвоню в течение 30 минут и рассчитаю стоимость работ на вашем объекте. Выезд на замер бесплатный.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.13 12.7 19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Телефон</div>
+            <div class="contact-item-val">+7 (861) 200-00-00</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">info@rusvет-montazh.ru</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Адрес</div>
+            <div class="contact-item-val">г. Краснодар, ул. Красная, 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input class="form-input" type="text" placeholder="Александр">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" placeholder="+7 (___) ___-__-__">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Тип объекта</label>
+          <select class="form-input" style="cursor:pointer">
+            <option value="" disabled selected style="background:#111">Выберите тип объекта</option>
+            <option style="background:#111">Квартира / апартаменты</option>
+            <option style="background:#111">Частный дом / коттедж</option>
+            <option style="background:#111">Коммерческий объект</option>
+            <option style="background:#111">Промышленный объект</option>
+            <option style="background:#111">Другое</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Описание задачи</label>
+          <textarea class="form-input" placeholder="Опишите кратко, какие работы необходимо выполнить..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit(this)">Отправить заявку →</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных. Отвечу лично в течение 30 минут в рабочее время.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo footer-logo">
+    <div class="logo-icon" style="width:36px;height:36px">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5"><path d="M13 2L4.5 13H11L10 22L19.5 11H13L13 2Z"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">РусСвет</span>
+      <span class="logo-sub">Краснодарский край</span>
+    </div>
+  </a>
+  <p class="footer-copy">© 2024 РусСвет · Руслан Георгичук. Все права защищены.</p>
+  <div class="footer-links">
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">Реквизиты</a>
+    <a href="#contact">Контакты</a>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+    })
+  },{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.fade-in').forEach((el,i)=>{
+    el.style.transitionDelay=(i%3)*0.15+'s';
+    obs.observe(el);
+  });
+});
+
+function handleSubmit(btn){
+  btn.textContent='Отправляем...';
+  btn.style.opacity='0.7';
+  setTimeout(()=>{
+    btn.textContent='Заявка отправлена ✓';
+    btn.style.background='#2a5e2a';
+    btn.style.color='#fff';
+    setTimeout(()=>{
+      btn.textContent='Отправить заявку →';
+      btn.style.background='';
+      btn.style.color='';
+      btn.style.opacity='1';
+    },4000);
+  },1500);
+}
+</script>
+</body>
+</html>
